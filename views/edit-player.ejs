@@ -1,0 +1,27 @@
+<% include header.ejs %>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (joueur) { %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="first-name">Prénom</label>
+                    <input type="text" class="form-control" name="first_name" id="first-name" value="<%= joueur.prenom %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="last-name">Nom</label>
+                    <input type="text" class="form-control" name="last_name" id="last-name" value="<%= joueur.nom %>" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Mettre à jour un joueur</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Aucun joueur trouvés, allez <a href="/add">ici</a> pour ajouter un joueur.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>

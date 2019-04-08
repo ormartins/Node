@@ -1,0 +1,37 @@
+<% include header.ejs %>
+    <div class="table-wrapper">
+        <% if (joueurs.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Classement</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% joueurs.forEach((joueur, index) => { %>
+                        <tr>
+                            <th scope="row"><%= joueur.id %></th>
+                            <td><%= joueur.nom %></td>
+                            <td><%= joueur.prenom %></td>
+                            <td><%= joueur.score %></td>
+                            <td><%= joueur.classement %></td>
+                            <td>
+                                <a href="/edit/<%= joueur.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/delete/<%= joueur.id %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">Aucun joueur trouvé, allez <a href="/add" >ici</a> pour ajouter un joueur.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
