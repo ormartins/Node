@@ -6,7 +6,9 @@ const path = require('path');
 const app = express();
 
 const {getHomePage} = require('./routes/index');
-const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
+const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage, listPlayerPage} = require('./routes/player');
+const {afficheTournois, addTournoiPage, addTournoi, deleteTournoi, afficheTournoi} = require('./routes/tournoi');
+
 const port = 5000;
 
 // create connection to database
@@ -14,7 +16,7 @@ const port = 5000;
 const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
-    password: 'mysql',
+    password: '',
     database: 'db_tournoi'
 });
 
@@ -38,10 +40,19 @@ app.use(fileUpload()); // configure fileupload
 
 // routes for the app
 
+
+//get
 app.get('/', getHomePage);
+app.get('/players', listPlayerPage);
 app.get('/add', addPlayerPage);
 app.get('/edit/:id', editPlayerPage);
 app.get('/delete/:id', deletePlayer);
+app.get('/tournois', afficheTournois);
+app.get('/add-tournoi', addTournoiPage);
+app.get('/delete-tournoi/:id', deleteTournoi);
+app.get('/tournois/:id', afficheTournoi);
+//post
+app.post('/add-tournoi', addTournoi);
 app.post('/add', addPlayer);
 app.post('/edit/:id', editPlayer);
 

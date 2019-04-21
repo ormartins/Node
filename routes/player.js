@@ -1,9 +1,22 @@
 const fs = require('fs');
 
 module.exports = {
+    listPlayerPage: (req, res) => {
+        let query = "SELECT * FROM `joueur` ORDER BY id ASC";
+
+        db.query(query, (err, result) => {
+            if (err) {
+                res.redirect('/');
+            }
+            res.render('players.ejs', {
+                title: 'Mon tournoi de Tarot'
+                ,joueurs: result
+            });
+        });
+    },
     addPlayerPage: (req, res) => {
         res.render('add-player.ejs', {
-            title: 'Welcome to Socka | Add a new player'
+            title: 'Mon tournoi de Tarot'
             ,message: ''
         });
     },
@@ -23,7 +36,7 @@ module.exports = {
                 message = 'Le joueur existe déjà';
                 res.render('add-player.ejs', {
                     message,
-                    title: 'Welcome to Socka | Add a new player'
+                    title: 'Mon tournoi de Tarot'
                 });
             } else {
                         // send the player's details to the database
@@ -46,7 +59,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
             res.render('edit-player.ejs', {
-                title: 'Edit  Player'
+                title: 'Mon tournoi de Tarot'
                 ,joueur: result[0]
                 ,message: ''
             });
@@ -62,7 +75,7 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.redirect('/');
+            res.redirect('/players');
         });
     },
     deletePlayer: (req, res) => {

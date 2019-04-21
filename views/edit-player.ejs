@@ -1,4 +1,6 @@
 <% include header.ejs %>
+        <span class="navbar-brand mb-0 h1" ><a href="/players">Liste des joueurs</a></span>
+        <a class="float-right" href="/add" title="Add a New Player">Ajouter un joueur</a>
 <div class="container">
     <% if (message) { %>
         <p class="text-center text-danger"><%= message %></p>
@@ -12,11 +14,11 @@
                     <input type="text" class="form-control" name="first_name" id="first-name" value="<%= joueur.prenom %>" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="last-name">Nom</label>
+                    <label for="last-name">Last Name</label>
                     <input type="text" class="form-control" name="last_name" id="last-name" value="<%= joueur.nom %>" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success float-right">Mettre à jour un joueur</button>
+            <button type="submit" class="btn btn-success float-right">Mettre à jour le Joueur</button>
         </form>
     <% } else { %>
         <p class="text-center">Aucun joueur trouvés, allez <a href="/add">ici</a> pour ajouter un joueur.</p>
