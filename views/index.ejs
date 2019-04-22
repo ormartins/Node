@@ -1,11 +1,144 @@
 <% include header.ejs %>
-    
+
 
     <h1 class="text-center">Bienvenu sur notre Tournoi de Tarot !</h1>
+    <br><br>
 
-    <a href="/tournois" class="btn btn-lg btn-secondary">Accéder aux précédents Tournois</a>
-    <a href="/add-tournoi" class="btn btn-lg btn-primary">Créer un nouveau Tournoi</a>
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center">Règle du Tarot</h2>
+        <p>
+          Découvrez les règles du Tarot à 4 joueurs. Le jeu du Tarot est un des jeux de cartes les plus populaires en France. Apprécié pour ses qualités stratégiques ainsi que pour les prises de risque, le Tarot est un jeu de cartes qui impose la réflexion au joueur qui souhaite gagner.
 
-</div> 
+          Arrivé en France autour du XVIème siècle, il se joue habituellement à 4 joueurs. Le but du Tarot est d’être le joueur ayant le plus de points à la fin d’une manche.
+        </p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Pour jouer au Tarot, il vous faut :</h3>
+      </div>
+      <div class="row">
+        <ul>
+          <li>Le jeu de cartes de Tarot composé de 78 cartes.</li>
+          <li>Être 4 joueurs (traditionnellement).</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Répartition des cartes du Tarot :</h3>
+        <p>
+          Un jeu de tarot est composé de 56 cartes d’une valeur de l’As au Roi comme un jeu traditionnel (trèfle, cœur, carreau, pique). La particularité réside dans le fait qu’une carte supplémentaire « Le cavalier » se situe entre le valet et la dame.
+
+          Les atouts sont quand à eux au nombre de 21 (de 1 à 21). Ils permettent lors de la partie de couper n’importe quelles couleurs pour remporter le pli, sachant que leur valeur correspond à leur nombre.
+
+          La dernière carte est L’excuse et fonctionne un peu comme un joker. Elle a une grande valeur pour le décomptage de fin de partie mais ne permet pas de remporter un pli.
+        </p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Le but du jeu du tarot :</h3>
+        <p>
+          Le principe du jeu du tarot est basé sur le pari de réussir un certain nombre de points pour le joueur qui prend. Pour cela il peut se faire aider par les Oudlers. Plus le joueur qui a prit en possède à la fin de partie, moins il devra faire de points pour réussir son pari.
+        </p>
+        <ul>
+          <li>Aucun Oudlers , il faut qu’il fasse 56 points</li>
+          <li>Avec 1 Oudlers, il faut qu’il fasse 51 points</li>
+          <li>Avec 2 Oudlers, il faut qu’il fasse 41 points</li>
+          <li>Avec 3 Oudlers, il faut qu’il fasse 36 points.</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Les Oudlers :</h3>
+        <p>Les oudlers sont au nombre de 3 : </p>
+        <ul>
+          <li>Le 21 d’atout. C’est la carte la plus forte du jeu.</li>
+          <li>Le 1 d’atout appelé également « Le petit ». Carte vulnérable, il faut la conserver étant donné sa valeur.</li>
+          <li>L’excuse. Carte imprenable, il faut la joueur judicieusement pour laisser filer un pli sans importance.</li>
+          <p>Chaque Oudler vaut d’office 5 points. Voilà pourquoi si vous possédez les 3, vous avez déjà 15 points et seulement 21 points (36 – 15)  à faire pour gagner.</p>
+        </ul>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Commencer une partie de Tarot :</h3>
+        <p>Pour commencer, le jeu est étalé sur le tapis face cachée et chaque joueur pioche une carte. Le joueur ayant la carte la plus faible est désigné pour distribuer.</p>
+        <p>Celui-ci distribue alors à chaque joueur les cartes 3 par 3. Le donneur doit également constituer « Le chien » composé de 6 cartes qu’il doit poser carte par carte sans que celle-ci ne soit la première et le dernière carte distribuée.</p>
+        <p>Chaque joueur retourne alors ses cartes sans les classer et celui situé à la gauche du donneur annonce si il prend. Si la réponse est non, c’est au joueur situé après lui de parler. Un joueur peut supplanter un autre joueur en prenant un pari plus fort.</p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Les paris (ou enchères) du Tarot :</h3>
+        <p>Lorsque que l’un des joueurs se décide à prendre, il doit parier sa victoire en prenant plus ou moins de risques selon le niveau d’enchères choisit. A savoir que tous paris vaut 25 points d’office.</p>
+        <ul>
+          <li>Une petite. Le pari ne rapporte rien de plus que les 25 points.</li>
+          <li>Une garde. Le pari est multiplié par 2 en cas de victoire ou défaite.</li>
+          <li>Une garde sans le chien (celui qui prend ne regarde pas le chien et le garde). Le pari est multiplié par 4 en cas de victoire ou défaite.</li>
+          <li>Une garde contre le chien (le chien revient à l’équipe). Le pari est multiplié par 6 en cas de victoire ou défaite.</li>
+        </ul>
+        <p>Si personne ne décide de prendre, le donneur redistribue alors les cartes.</p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Le déroulement de la partie :</h3>
+        <p>
+          A l’issue de la prise de pari d’un des joueurs, le chien composé de 6 cartes est alors retourné à la vue de tous (dans la cas d’une petite ou d’une garde) et donné au preneur. Celui-ci choisit 6 cartes de son choix (sauf le roi et les oudlers) et les repose devant lui sans les montrer. Les 3 autres joueurs forment alors pour toute la durée de cette partie une équipe devant tenter d’empêcher au preneur de réussir son pari.
+
+          C’est toujours le joueur situé à gauche du donneur qui commence la partie. Il joue une couleur et les autres joueurs ont l’obligation de fournir la couleur demandée si bien entendu, ils en possèdent les cartes. Si ils n’en possèdent pas, ils peuvent couper à l’atout. Le gagnant du pli est celui qui ouvre le tour suivant.
+
+          Concernant les atouts, les joueurs ont l’obligation de monter à l’atout, c’est-à-dire de jouer une carte d’atout supérieure à celle précédemment jouée. Si un joueur ne possède plus d’atouts, ni de cartes de la couleur demandée, il peut poser n’importe quelle carte de son jeu.
+
+          L’excuse est toujours conservée par le joueur qui la possède. Le joueur ne peut remporter le pli puisqu’elle n’a pas de valeur directe lorsqu’elle est jouée. Celui-ci doit alors lorsque le tour est finit donner une carte sans valeur qu’il choisit en échange dans les précédentes levées pour compléter le pli. L’excuse ne peut être jouée au dernier tour sous peine de la perdre.
+        </p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Comment compter les points au Tarot ?</h3>
+        <p>Pour chaque partie, il faut compter séparément le total des plis du preneur et les plis de l’équipe. Le total doit toujours donner 91 points.</p>
+        <p>Pour compter les cartes, il faut toujours joindre une carte basse avec une carte habillée.</p>
+        <p>Voyons maintenant la valeur des cartes : </p>
+        <ul>
+          <li>Les 3 Oudlers valent chacun 5 points</li>
+          <li>Le roi vaut 5 points</li>
+          <li>La dame vaut 4 points</li>
+          <li>le cavalier vaut 3 points</li>
+          <li>Le valet vaut 2 points.</li>
+          <li>Les autres cartes par 2 valent 1 point.</li>
+        </ul>
+        <p>Le preneur pour gagner doit donc faire au choix selon le nombre de Oudlers qu’il possède :</p>
+        <ul>
+          <li>56 points</li>
+          <li>51 points</li>
+          <li>41 points</li>
+          <li>36 points</li>
+        </ul>
+        <p>Si le pari du preneur est réussi, il prend immédiatement 25 points + le nombre de points fait en plus de son pari.</p>
+        <p>Exemple : Le preneur à pris une garde et doit faire 36 points. Son total de points s’élève à 41 points.  Le résultats est donc 30 points (25 points + 5 points).  Ayant pris à Garde le total est multiplié par 2. Donc le résultat est 60 points.</p>
+        <p>On met alors -60 points à chaque joueur de l’équipe et l’addition des 3 au preneur : + 180 points.</p>
+        <p>Ainsi, à la fin de la manche, le score total des joueurs doit toujours être égal à 0.</p>
+      </div>
+
+      <div class="row">
+        <h3 class="text-center">Coups spéciaux :</h3> <br><br>
+        <span><strong>Le petit au bout</strong></span>
+        <p>Si le petit est amené jusqu’au dernier tour sans être perdu, il rapporte 10 points de plus à l’équipe ou le preneur qui le gagne et est multipliable selon l’enchère choisi.</p>
+        <span><strong>Le grand chelem</strong></span>
+        <p>Pour réaliser un grand chelem, il faut remporter tous les plis. Il peut être annoncé après que le preneur est regardé le chien. Dans ce cas ce figure, c’est le preneur qui commence la partie et peut gagner le dernière pli avec l’excuse.</p>
+        <p>Le grand chelem rapporte en prime de points supplémentaire :</p>
+        <ul>
+          <li>+ 400 points si le preneur l’annonce et le réalise</li>
+          <li>+ 200 points si le preneur ne l’annonce pas mais le réalise</li>
+          <li>– 200 points si le preneur l’annonce mais ne le réalise pas.</li>
+        </ul>
+        <span><strong>Le grand chelem</strong></span>
+        <p>Certains joueurs ont incorporé cette règle au jeu du tarot. La différence avec le grand chelem réside dans le fait que le petit chelem est réalisé si le preneur ne laisse qu’un seul pli à ses adersaires.</p>
+      </div>
+
+    </div>
+
+
+    <!-- <a href="/tournois" class="btn btn-lg btn-secondary">Accéder aux précédents Tournois</a>
+    <a href="/add-tournoi" class="btn btn-lg btn-primary">Créer un nouveau Tournoi</a> -->
+
+</div>
 </body>
 </html>

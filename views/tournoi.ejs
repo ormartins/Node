@@ -1,6 +1,6 @@
 <% include header.ejs %>
     <h1>Tournois:</h1>
-    <a class="float-right" href="/add-tournoi" title="Ajouter un tournoi">Ajouter un tournoi</a>
+    <!-- <a class="float-right" href="/add-tournoi" title="Ajouter un tournoi">Ajouter un tournoi</a> -->
     <div class="table-wrapper">
         <% if (tournois.length > 0) { %>
             <table class="table table-hovered">
@@ -27,7 +27,7 @@
                 </tbody>
             </table>
         <% } else { %>
-            <p class="text-center">Aucun tournois trouvés, allez <a href="/" >ici</a> pour créer un tournoi.</p>
+            <p class="text-center">Aucun tournois trouvés, allez <a href="/add-tournoi" >ici</a> pour créer un tournoi.</p>
         <% } %>
 
     </div>
