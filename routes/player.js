@@ -33,15 +33,15 @@ module.exports = {
                 return res.status(500).send(err);
             }
             if (result.length > 0) {
-                message = 'Le joueur existe déjà';
+                message = 'Le joueur existe déjà !';
                 res.render('add-player.ejs', {
                     message,
                     title: 'Mon tournoi de Tarot'
                 });
             } else {
                         // send the player's details to the database
-                        let query = "INSERT INTO `joueur` (prenom, nom, score, classement) VALUES ('" +
-                            prenom + "', '" + nom + "', '" + 0 + "', '" + 0 +"')";
+                        let query = "INSERT INTO `joueur` (prenom, nom, score) VALUES ('" +
+                            prenom + "', '" + nom + "', '" + 0 + "')";
                         db.query(query, (err, result) => {
                             if (err) {
                                 return res.status(500).send(err);
@@ -97,7 +97,20 @@ module.exports = {
                 res.redirect('/');
             }
             res.render('see-ranking.ejs', {
-                title: 'Classement joueurs',
+                title: 'Mon tournoi de Tarot',
+                joueurs: result
+            });
+        });
+    },
+    afficheScoreTable: (req,res) => {
+        let query = "SELECT joueur.*, id.tournoi FROM `joueur`, `tournoi` GROUP BY tournoi.table ORDER BY joueur.score DESC";
+
+        db.query(query, (err, result) => {
+            if (err) {
+                res.redirect('/');
+            }
+            res.render('see-ranking-table.ejs', {
+                title: 'Mon tournoi de Tarot',
                 joueurs: result
             });
         });
