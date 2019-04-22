@@ -1,0 +1,44 @@
+<% include header.ejs %>
+    <h1>Classement des joueurs par table :</h1>
+    <div class="table-wrapper">
+        <% if (joueurs.length > 0) { %>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">N° tournoi</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">N° table</th>
+                        <th scope="col">Nom joueur</th>
+                        <th scope="col">Prénom joueur</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tournois.forEach((tournoi, index) => { %>
+                            <tr>
+                                <td><%= tournoi.id %></td>
+                            </tr>
+                    <% }) %>
+                    <% tables.forEach((table, index) => { %>
+                        <tr>
+                            <td><%= table.id %></td>
+                        </tr>
+                <% }) %>
+                    <% joueurs.forEach((joueur, index) => { %>
+                        <tr>
+                            <td><%= joueur.prenom %></td>
+                            <td><%= joueur.nom %></td>
+                            <td><%= joueur.score %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">Classement indisponible, veuillez <a href="/add-tournoi" >créer un tournoi</a></p>
+        <% } %>
+
+    </div>
+</div>
+</body>
+</html>
