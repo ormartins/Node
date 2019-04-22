@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const {getHomePage} = require('./routes/index');
-const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage, listPlayerPage, afficheScore} = require('./routes/player');
+const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage, listPlayerPage, afficheScore, afficheScoreTable} = require('./routes/player');
 const {afficheTournois, addTournoiPage, addTournoi, deleteTournoi, afficheTournoi} = require('./routes/tournoi');
 
 const port = 5000;
@@ -51,6 +51,7 @@ app.get('/add-tournoi', addTournoiPage);
 app.get('/delete-tournoi/:id', deleteTournoi);
 app.get('/tournois/:id', afficheTournoi);
 app.get('/statistics', afficheScore);
+app.get('/statistics', afficheScoreTable);
 //post
 app.post('/add-tournoi', addTournoi);
 app.post('/add', addPlayer);
