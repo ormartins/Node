@@ -88,5 +88,18 @@ module.exports = {
                     }
                     res.redirect('/');
                 });
+    },
+    afficheScore: (req,res) => {
+        let query = "SELECT * FROM `joueur` ORDER BY score DESC";
+
+        db.query(query, (err, result) => {
+            if (err) {
+                res.redirect('/');
+            }
+            res.render('see-ranking.ejs', {
+                title: 'Classement joueurs',
+                joueurs: result
+            });
+        });
     }
 };
