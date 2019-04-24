@@ -1,118 +1,39 @@
-const fs = require('fs');
-
-module.exports = {
-    listPlayerPage: (req, res) => {
-        let query = "SELECT * FROM `joueur` ORDER BY id ASC";
-
-        db.query(query, (err, result) => {
-            if (err) {
-                res.redirect('/');
-            }
-            res.render('players.ejs', {
-                title: 'Mon tournoi de Tarot'
-                ,joueurs: result
-            });
-        });
-    },
-    addPlayerPage: (req, res) => {
-        res.render('add-player.ejs', {
-            title: 'Mon tournoi de Tarot'
-            ,message: ''
-        });
-    },
-    addPlayer: (req, res) => {
-
-        let message = '';
-        let prenom = req.body.first_name;
-        let nom = req.body.last_name
-
-        let query = "SELECT * FROM `joueur` WHERE prenom = '" + prenom + "' AND nom = '" + nom + "'";
-
-        db.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            if (result.length > 0) {
-                message = 'Le joueur existe déjà !';
-                res.render('add-player.ejs', {
-                    message,
-                    title: 'Mon tournoi de Tarot'
-                });
-            } else {
-                        // send the player's details to the database
-                        let query = "INSERT INTO `joueur` (prenom, nom, score) VALUES ('" +
-                            prenom + "', '" + nom + "', '" + 0 + "')";
-                        db.query(query, (err, result) => {
-                            if (err) {
-                                return res.status(500).send(err);
-                            }
-                            res.redirect('/');
-                        });
-                }
-        });
-    },
-    editPlayerPage: (req, res) => {
-        let playerId = req.params.id;
-        let query = "SELECT * FROM `joueur` WHERE id = '" + playerId + "' ";
-        db.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.render('edit-player.ejs', {
-                title: 'Mon tournoi de Tarot'
-                ,joueur: result[0]
-                ,message: ''
-            });
-        });
-    },
-    editPlayer: (req, res) => {
-        let playerId = req.params.id;
-        let prenom = req.body.first_name;
-        let nom = req.body.last_name;
-
-        let query = "UPDATE `joueur` SET `prenom` = '" + prenom + "', `nom` = '" + nom + "' WHERE `joueur`.`id` = '" + playerId + "'";
-        db.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.redirect('/players');
-        });
-    },
-    deletePlayer: (req, res) => {
-        let playerId = req.params.id;
-        let deleteUserQuery = 'DELETE FROM joueur WHERE id = "' + playerId + '"';
-
-                db.query(deleteUserQuery, (err, result) => {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-                    res.redirect('/');
-                });
-    },
-    afficheScore: (req,res) => {
-        let query = "SELECT * FROM `joueur` ORDER BY score DESC";
-
-        db.query(query, (err, result) => {
-            if (err) {
-                res.redirect('/');
-            }
-            res.render('see-ranking.ejs', {
-                title: 'Mon tournoi de Tarot',
-                joueurs: result
-            });
-        });
-    },
-    afficheScoreTable: (req,res) => {
-        let query = "SELECT joueur.*, id.tournoi FROM `joueur`, `tournoi` GROUP BY tournoi.table ORDER BY joueur.score DESC";
-
-        db.query(query, (err, result) => {
-            if (err) {
-                res.redirect('/');
-            }
-            res.render('see-ranking-table.ejs', {
-                title: 'Mon tournoi de Tarot',
-                joueurs: result
-            });
-        });
-    }
-};
+<% include header.ejs %>
+        <span class="navbar-brand mb-0 h1" ><a href="/players">Liste des joueurs</a></span>
+        <a class="float-right" href="/add" title="Add a New Player">Ajouter un joueur</a>
+    <div class="table-wrapper">
+        <% if (joueurs.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Classement</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% joueurs.forEach((joueur, index) => { %>
+                        <tr>
+                            <th scope="row"><%= joueur.id %></th>
+                            <td><%= joueur.nom %></td>
+                            <td><%= joueur.prenom %></td>
+                            <td><%= joueur.score %></td>
+                            <td><%= joueur.classement %></td>
+                            <td>
+                                <a href="/edit/<%= joueur.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Modifier</a>
+                                <a href="/delete/<%= joueur.id %>" class="btn btn-sm btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">Aucun joueur trouvé, allez <a href="/add" >ici</a> pour ajouter un joueur.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
