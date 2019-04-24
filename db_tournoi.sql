@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 22 avr. 2019 à 20:13
+-- Généré le :  mer. 24 avr. 2019 à 11:28
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -49,6 +49,31 @@ INSERT INTO `joueur` (`id`, `nom`, `prenom`, `score`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `score`
+--
+
+DROP TABLE IF EXISTS `score`;
+CREATE TABLE IF NOT EXISTS `score` (
+  `id_joueur` int(11) NOT NULL,
+  `id_table` int(11) NOT NULL,
+  `scoreTable` int(11) NOT NULL,
+  `nb_tour` int(11) NOT NULL,
+  `position` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `score`
+--
+
+INSERT INTO `score` (`id_joueur`, `id_table`, `scoreTable`, `nb_tour`, `position`) VALUES
+(1, 1, 50, 1, 'Est'),
+(1, 2, 10, 2, 'Ouest'),
+(2, 1, 10, 1, 'Sud'),
+(2, 2, 50, 2, 'Est');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `table`
 --
 
@@ -72,9 +97,10 @@ CREATE TABLE IF NOT EXISTS `table` (
 
 DROP TABLE IF EXISTS `tournoi`;
 CREATE TABLE IF NOT EXISTS `tournoi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `table` int(11) NOT NULL,
-  `tour` int(11) NOT NULL
+  `tour` int(11) NOT NULL,
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
