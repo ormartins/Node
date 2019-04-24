@@ -50,8 +50,8 @@ app.get('/tournois', afficheTournois);
 app.get('/add-tournoi', addTournoiPage);
 app.get('/delete-tournoi/:id', deleteTournoi);
 app.get('/tournois/:id', afficheTournoi);
-app.get('/statistics', afficheScore);
-app.get('/statistics', afficheScoreTable);
+app.get('/statisticsPlayer', afficheScore);
+app.get('/statisticsTable', afficheScoreTable);
 //post
 app.post('/add-tournoi', addTournoi);
 app.post('/add', addPlayer);
