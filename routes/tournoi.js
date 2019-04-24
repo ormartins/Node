@@ -16,10 +16,18 @@ module.exports = {
         });
     },
     addTournoiPage: (req,res) => {
-        res.render('add-tournoi.ejs', {
-            title: 'Mon tournoi de Tarot'
-            ,message: ''
-        });
+      let query = "SELECT * FROM `joueur`";
+
+      db.query(query, (err, result) => {
+          if (err) {
+              res.redirect('/');
+          }
+          res.render('add-tournoi.ejs', {
+              title: 'Mon tournoi de Tarot'
+              ,players: result
+              ,message: ''
+          });
+      });
     },
     addTournoi: (req, res) =>{
         let nb_tour = req.body.tour;
@@ -31,7 +39,7 @@ module.exports = {
         let tmp = "";
 
 
-        // Cas particulier ou on n'ajoute que une table 
+        // Cas particulier ou on n'ajoute que une table
         if(nb_table == 1){
             console.log(joueurs_nord);
             for (let i=0; i<joueurs_nord.length; i++){
@@ -71,11 +79,11 @@ module.exports = {
 
         // Création d'un tournoi
         let queryCreationTournoi = "INSERT INTO `tournoi` (tour,score) VALUES('"+nb_tour+"', '" + 0 +"')";
-    
+
         db.query(queryCreationTournoi, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
-            }    
+            }
             id_tournoi = result.insertId;
             ajoutNord(id_tournoi);
             ajoutSud(id_tournoi);
@@ -89,13 +97,13 @@ module.exports = {
             for (let i=0; i<joueurs_nord.length; i++){
                 nom_prenom_nord = joueurs_nord[i].split(' ');
                 let queryAjoutJoueurNord = "INSERT INTO `joueur` (nom, prenom, score, classement, id_tournoi) VALUES ('"+nom_prenom_nord[0]+"' , '"+nom_prenom_nord[1]+"','"+0 +"', '"+ 0 + "' , '"+id_tournoi+"')";
-                
+
                 db.query(queryAjoutJoueurNord, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     joueurs_nord[i] = result.insertId;
-                }); 
+                });
             }
         }
 
@@ -104,14 +112,14 @@ module.exports = {
             for (let i=0; i<joueurs_sud.length; i++){
                 nom_prenom_sud = joueurs_sud[i].split(' ');
                 let queryAjoutJoueurSud = "INSERT INTO `joueur` (nom, prenom, score, classement, id_tournoi) VALUES ('"+nom_prenom_sud[0]+"' , '"+nom_prenom_sud[1]+"','"+0 +"', '"+ 0 + "' , '"+id_tournoi+"')";
-                
+
                 db.query(queryAjoutJoueurSud, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     joueurs_sud[i] = result.insertId;
-                }); 
-            }    
+                });
+            }
         }
 
         // Ajout des joueurs Est
@@ -119,14 +127,14 @@ module.exports = {
             for (let i=0; i<joueurs_est.length; i++){
                 nom_prenom_est = joueurs_est[i].split(' ');
                 let queryAjoutJoueurEst = "INSERT INTO `joueur` (nom, prenom, score, classement, id_tournoi) VALUES ('"+nom_prenom_est[0]+"' , '"+nom_prenom_est[1]+"','"+0 +"', '"+ 0 + "' , '"+id_tournoi+"')";
-                
+
                 db.query(queryAjoutJoueurEst, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     joueurs_est[i] = result.insertId;
-                }); 
-            } 
+                });
+            }
         }
 
         // Ajout des joueurs Ouest
@@ -134,26 +142,26 @@ module.exports = {
             for (let i=0; i<joueurs_ouest.length; i++){
                 nom_prenom_ouest = joueurs_ouest[i].split(' ');
                 let queryAjoutJoueurOuest = "INSERT INTO `joueur` (nom, prenom, score, classement, id_tournoi) VALUES ('"+nom_prenom_ouest[0]+"' , '"+nom_prenom_ouest[1]+"','"+0 +"', '"+ 0 + "' , '"+id_tournoi+"')";
-                
+
                 db.query(queryAjoutJoueurOuest, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     joueurs_ouest[i] = result.insertId;
-                }); 
-            }   
+                });
+            }
         }
 
         // Création des tables
         setTimeout(function(){
             for (let i=0; i<nb_table; i++){
                 let queryCreationTable = "INSERT INTO `table`(somme_point, nord, sud, est, ouest, id_tournoi) VALUES("+0+", "+joueurs_nord[i]+" , "+joueurs_sud[i]+" , "+joueurs_est[i]+" , "+joueurs_ouest[i]+" , "+id_tournoi+" )";
-                
+
                 db.query(queryCreationTable, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
-                    
+
                     let query = "SELECT * FROM `tournoi` ORDER BY id ASC";
 
                     db.query(query, (err, result) => {
@@ -165,9 +173,9 @@ module.exports = {
                             ,tournois: result
                         });
                     });
-                });   
+                });
             }
-        }, 500); 
+        }, 500);
     },
 
 
