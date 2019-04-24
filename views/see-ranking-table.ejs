@@ -1,7 +1,7 @@
 <% include header.ejs %>
     <h1>Classement des joueurs par table :</h1>
     <div class="table-wrapper">
-        <% if (joueurs.length > 0) { %>
+        <% if (joueurs.lenght > 0) { %>
             <table class="table table-hovered">
                 <thead class="thead-dark">
                     <tr>
@@ -9,9 +9,12 @@
                     </tr>
                     <tr>
                         <th scope="col">N° table</th>
+                        <th scope="col">N° tour</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">N° joueur</th>
                         <th scope="col">Nom joueur</th>
                         <th scope="col">Prénom joueur</th>
-                        <th scope="col">Score</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,12 +27,18 @@
                         <tr>
                             <td><%= table.id %></td>
                         </tr>
-                <% }) %>
+                    <% }) %>
+                    <% scores.forEach((score, index) => { %>
+                        <tr>
+                            <td><%= score.scoreTable %></td>
+                            <td><%= score.position %></td>
+                        </tr>
+                    <% }) %>
                     <% joueurs.forEach((joueur, index) => { %>
                         <tr>
+                            <td><%= joueur.id %></td>
                             <td><%= joueur.prenom %></td>
                             <td><%= joueur.nom %></td>
-                            <td><%= joueur.score %></td>
                         </tr>
                     <% }) %>
                 </tbody>
